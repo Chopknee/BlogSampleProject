@@ -12,6 +12,8 @@ namespace BlogSampleProject.Scenes.ProceduralAnimation {
 
 		private void Awake() {
 			transform.Find("Sample1").gameObject.AddComponent<Sample1>();
+			transform.Find("Sample2").gameObject.AddComponent<Sample2>();
+			transform.Find("Sample3").gameObject.AddComponent<Sample3>();
 		}
 
 	}

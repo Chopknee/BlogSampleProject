@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace BlogSampleProject.Scenes.ProceduralAnimation {
-	public class Sample1 : MonoBehaviour {
+	public class Sample2 : MonoBehaviour {
 
 		private Transform square = null;
 
@@ -20,7 +20,7 @@ namespace BlogSampleProject.Scenes.ProceduralAnimation {
 			// Eliminating 0 or negative values.
 			// The following turns our accumulated delta time into a 0 to 1 value
 			float percent = 0.0f;
-			if (Mathf.Abs(playbackDuration) > 0.0f)
+			if (Mathf.Abs(playbackTime) > 0.0f)
 				percent = playbackTime / Mathf.Abs(playbackDuration);
 
 			float a = percent - Mathf.Floor(percent);
@@ -30,6 +30,7 @@ namespace BlogSampleProject.Scenes.ProceduralAnimation {
 		}
 
 		private void Render(float a) {
+			a = a * a; // A simple exponential function
 			square.localScale = Vector3.one * 2.0f * a;
 		}
 
