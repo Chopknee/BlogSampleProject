@@ -14,6 +14,7 @@ namespace BlogSampleProject.Scenes.ProceduralAnimation {
 			transform.Find("Sample1").gameObject.AddComponent<Sample1>();
 			transform.Find("Sample2").gameObject.AddComponent<Sample2>();
 			transform.Find("Sample3").gameObject.AddComponent<Sample3>();
+			transform.Find("Sample4").gameObject.AddComponent<Sample4>();
 		}
 
 	}
