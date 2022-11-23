@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BlogSampleProject.Scenes.ProceduralAnimation {
+namespace BlogSampleProject.Scenes.CodeBasedAnimation {
 	public class Sample2 : MonoBehaviour {
 
 		private Transform square = null;

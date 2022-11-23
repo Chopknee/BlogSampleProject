@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BlogSampleProject.Scenes.ProceduralAnimation {
+namespace BlogSampleProject.Scenes.CodeBasedAnimation {
 	public class Sample4 : MonoBehaviour {
 
-		//private Transform square = null;
 		private Transform[] squares = null;
 
 		private float playbackTime = 0.0f;
 		public float playbackDuration = 4f;
 
+		private float sliceLength = 0.0f;
+
 		private void Awake() {
 			squares = new Transform[10];
+			// This tells us how long each time slice should be
+			sliceLength = 1.0f / (float)squares.Length;
 
 			Transform sourceSquare = transform.Find("Square");
 			squares[0] = sourceSquare;
@@ -41,7 +44,8 @@ namespace BlogSampleProject.Scenes.ProceduralAnimation {
 		}
 
 		private void Render(float a) {
-			float sliceLength = 1.0f / (float)squares.Length;
+			// Try uncommenting this line to see how the animation changes!
+			// a = EaseInOutCirc(a);
 
 			for (int i = 0; i < squares.Length; i++) {
 				// Get the 0 - 1 value in each "slice" of time. 
@@ -54,6 +58,7 @@ namespace BlogSampleProject.Scenes.ProceduralAnimation {
 			}
 		}
 
+		// This function is far simpler than it first appears. The majority of it uses heuristics to eliminate unwanted or impossible situations.
 		public static float GetNormalizedTimeInTimeSlice(float currentTime, float timeSliceStart, float timeSliceLength) {
 			if (currentTime <= 0)
 				return 0.0f;
@@ -72,6 +77,7 @@ namespace BlogSampleProject.Scenes.ProceduralAnimation {
 			return timeSliceCurrentTime / timeSliceLength;
 		}
 
+		// Circ is my goto easing function. It creates a smooth animation that gives a polished snappy feel to UI.
 		public static float EaseInOutCirc(float a) {
 			a = a * 2.0f;
 			if (a < 1.0f)
